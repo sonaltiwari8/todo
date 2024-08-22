@@ -1,23 +1,18 @@
-from database.database import db
-from models.todo import Todo
-from flask import Flask, render_template
+from controllers.todo_controller import render_main_page
+from flask import Flask
 
 
 app = Flask(__name__)
 
+# model => database related logic
+# controller => application related logic
+
+# flask will call the render_main function automatically whenever there is GET request on the / endpoint
+
 
 @app.get("/")
 def render_main():
-    pending_todos = []
-    completed_todos = []
-
-    todos = Todo.get_all_todos()
-    for todo in todos:
-        if todo.status == 'pending':
-            pending_todos.append(todo)
-        else:
-            completed_todos.append(todo)
-    return render_template("index.html", completed_todos=completed_todos, pending_todos=pending_todos)
+    return render_main_page()
 
 
 app.run('localhost', 4000, debug=True)

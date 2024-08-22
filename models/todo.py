@@ -13,6 +13,9 @@ class Todo:
 
     @staticmethod
     def get_all_todos():
+        """
+        get_all_todos method will fetch all todos from the database and convert it into a list of Todo's object    
+        """
         cursor = db.cursor()
         cursor.execute("SELECT * FROM todos")
         todo_list = cursor.fetchall()
