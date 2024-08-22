@@ -31,10 +31,22 @@ class Todo:
         return final_todos
 
     def create_todo(self):
-        pass
+        cursor = db.cursor()
+        cursor.execute(f'insert into todos ("{self.id}", "{self.todo_name}", "{self.priority_level}"," {self.deadline_date}"," {self.deadline_time}"," {
+                       self.status}", "{self.created_at}") values("1", "cook", "medium", "20 Aug 2024" , "6: 00 PM" ,"pending", "19 Aug 2024")')
+        db.commit()
+        return "todo added"
 
-    def delete_todo(self):
-        pass
+    @staticmethod
+    def delete_todo(id):
+        cursor = db.cursor()
+        cursor.execute(f"delete from todo where id = {id}")
+        db.commit()
+        return "todo deleted"
 
-    def complete_todo(self):
-        pass
+    @staticmethod
+    def complete_todo(id):
+        cursor = db.cursor()
+        cursor.execute(f"update todo where id = {id} set status = 'completed'")
+        db.commit()
+        return "todo completed"
