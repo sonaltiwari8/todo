@@ -24,27 +24,28 @@
       </div>
     </section>
 
-    <section class="input-section">
+    <form action="/todos" method="post" class="input-section">
       <input
         type="text"
         placeholder="enter your todo task"
         class="todo-input todo_name_input"
+        name="todo_name"
       />
-      <input type="date" class="todo-input" />
-      <input type="time" class="todo-input" />
-      <select class="todo-input">
-        <option>High</option>
-        <option>Medium</option>
-        <option>Low</option>
+      <input type="date" class="todo-input" name="deadline_date" />
+      <input type="time" class="todo-input" name="deadline_time" />
+      <select class="todo-input" name="priority_level">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
       </select>
-      <button class="btn">
+      <button class="btn" type="submit">
         <span class="material-symbols-outlined"> add_circle </span>
         <p>ADD TODO</p>
       </button>
-    </section>
+    </form>
     <section class="todo-section">
       <div class="pending-todos-container">
-        <h1>Pending Todos (100)</h1>
+        <h1>Pending Todos ({{pending_todos | length}})</h1>
         <ul>
           {% for todo in pending_todos %}
           <li class="todo-container">
@@ -73,7 +74,7 @@
         </ul>
       </div>
       <div class="completed-todos-container">
-        <h1>Completed Todos (100)</h1>
+        <h1>Completed Todos ({{completed_todos | length}})</h1>
         <ul>
           {% for todo in completed_todos %}
           <li class="todo-container">
