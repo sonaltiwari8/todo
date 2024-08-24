@@ -18,6 +18,11 @@
        padding: 0;
    }
 
+
+   a {
+       text-decoration: none;
+   }
+
    .time-section {
        display: flex;
        justify-content: space-between;
@@ -49,6 +54,10 @@
 
    .alarm-icon {
        width: 30px;
+   }
+
+   .completed_todo {
+       text-decoration: line-through;
    }
 
    .todo_name_input {

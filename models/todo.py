@@ -20,6 +20,7 @@ class Todo:
         cursor.execute("SELECT * FROM todos ORDER BY created_at DESC")
         todo_list = cursor.fetchall()
         final_todos = []
+
         for todo in todo_list:
             todo_obj = Todo(
                 id=todo[0],
@@ -44,13 +45,13 @@ class Todo:
     @staticmethod
     def delete_todo(id):
         cursor = db.cursor()
-        cursor.execute(f"delete from todo where id = {id}")
+        cursor.execute(f"DELETE FROM todos WHERE id = {id}")
         db.commit()
-        return "todo deleted"
 
     @staticmethod
     def complete_todo(id):
         cursor = db.cursor()
-        cursor.execute(f"update todo where id = {id} set status = 'completed'")
+        cursor.execute(
+            f"UPDATE todos  SET status = 'completed' where id = {id}")
         db.commit()
         return "todo completed"
