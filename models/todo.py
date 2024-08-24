@@ -2,7 +2,7 @@ from database.database import db
 
 
 class Todo:
-    def __init__(self, id, todo_name, priority_level, deadline_date, deadline_time, status, created_at):
+    def __init__(self, todo_name, priority_level, deadline_date, deadline_time, status, id=None, created_at=None):
         self.id = id
         self.todo_name = todo_name
         self.priority_level = priority_level
@@ -13,8 +13,11 @@ class Todo:
 
     @staticmethod
     def get_all_todos():
+        """
+        get_all_todos method will fetch all todos from the database and convert it into a list of Todo's object
+        """
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM todos")
+        cursor.execute("SELECT * FROM todos ORDER BY created_at DESC")
         todo_list = cursor.fetchall()
         final_todos = []
         for todo in todo_list:
@@ -32,10 +35,11 @@ class Todo:
 
     def create_todo(self):
         cursor = db.cursor()
-        cursor.execute(f'insert into todos ("{self.id}", "{self.todo_name}", "{self.priority_level}"," {self.deadline_date}"," {self.deadline_time}"," {
-                       self.status}", "{self.created_at}") values("1", "cook", "medium", "20 Aug 2024" , "6: 00 PM" ,"pending", "19 Aug 2024")')
+
+        cursor.execute(f"INSERT INTO todos(todo_name, priority_level, deadline_date, deadline_time) VALUES('{
+                       self.todo_name}', '{self.priority_level}', '{self.deadline_date}','{self.deadline_time}')")
+
         db.commit()
-        return "todo added"
 
     @staticmethod
     def delete_todo(id):
