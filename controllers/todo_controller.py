@@ -4,7 +4,7 @@ from models.todo import Todo
 from flask import render_template, request
 
 
-def render_main_page():
+def render_main_handler():
     pending_todos = []
     completed_todos = []
 
@@ -32,4 +32,16 @@ def create_todo_handler():
 
     todo.create_todo()
 
-    return render_main_page()
+    return render_main_handler()
+
+
+def delete_todo_handler():
+    id = request.args.get("todo_id")
+    Todo.delete_todo(id)
+    return render_main_handler()
+
+
+def complete_todo_handler():
+    id = request.args.get("todo_id")
+    Todo.complete_todo(id)
+    return render_main_handler()

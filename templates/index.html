@@ -58,14 +58,20 @@
                 <p>{{ todo.created_at}}</p>
               </div>
               <div class="btn-container">
-                <button class="todo-btn todo-btn-remove">
-                  <span class="material-symbols-outlined"> delete </span>
-                  <p>remove</p>
-                </button>
-                <button class="todo-btn todo-btn-done">
-                  <span class="material-symbols-outlined"> check_circle </span>
-                  <p>done</p>
-                </button>
+                <a href="/todos/delete?todo_id={{ todo.id }}">
+                  <button class="todo-btn todo-btn-remove">
+                    <span class="material-symbols-outlined"> delete </span>
+                    <p>remove</p>
+                  </button>
+                </a>
+                <a href="/todos/complete?todo_id={{ todo.id }}">
+                  <button class="todo-btn todo-btn-done">
+                    <span class="material-symbols-outlined">
+                      check_circle
+                    </span>
+                    <p>done</p>
+                  </button>
+                </a>
               </div>
             </div>
             <div><p class="todo-time-left">{{ todo.deadline_date }}</p></div>
@@ -80,21 +86,19 @@
           <li class="todo-container">
             <div class="todo-details">
               <div class="todo-name-container">
-                <p class="todo-name">{{ todo.todo_name }}</p>
+                <p class="todo-name completed_todo">{{ todo.todo_name }}</p>
                 <div class="priority-level {{ todo.priority_level }}"></div>
               </div>
               <div class="date-time-container">
                 <p>{{ todo.created_at}}</p>
               </div>
               <div class="btn-container">
-                <button class="todo-btn todo-btn-remove">
-                  <span class="material-symbols-outlined"> delete </span>
-                  <p>remove</p>
-                </button>
-                <button class="todo-btn todo-btn-done">
-                  <span class="material-symbols-outlined"> check_circle </span>
-                  <p>done</p>
-                </button>
+                <a href="/todos/delete?todo_id={{ todo.id }}">
+                  <button class="todo-btn todo-btn-remove">
+                    <span class="material-symbols-outlined"> delete </span>
+                    <p>remove</p>
+                  </button>
+                </a>
               </div>
             </div>
             <div><p class="todo-time-left">{{ todo.deadline_date }}</p></div>
